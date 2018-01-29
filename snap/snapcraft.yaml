@@ -16,7 +16,7 @@ description: |
   - Free: restic is free software and licensed under the
   BSD 2-Clause License and actively developed on GitHub."
 
-confinement: classic # use 'strict' once you have the right plugs and slots
+confinement: devmode # use 'strict' once you have the right plugs and slots
 grade: devel
 
 parts:
