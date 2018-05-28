@@ -15,7 +15,7 @@ distributions.</p>
 
 ## Install
 
-    sudo snap install restic --edge --devmode
+    sudo snap install restic --classic
 
 ([Don't have snapd installed?](https://snapcraft.io/docs/core/install))
 
