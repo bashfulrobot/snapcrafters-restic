@@ -23,14 +23,18 @@ grade: stable
 
 parts:
   restic:
-    plugin: dump
-    source: .
+    # Use the nil plugin with wget until bz2 is supported by snapcraft.
+    plugin: nil
+    build-packages:
+      - bzip2
+      - wget
+    override-pull: |
+      wget https://github.com/restic/restic/releases/download/v$SNAPCRAFT_PROJECT_VERSION/$SNAPCRAFT_PROJECT_NAME_$SNAPCRAFT_PROJECT_VERSION_linux_$SNAP_ARCH.bz2
+      bunzip2 $SNAPCRAFT_PROJECT_NAME_$SNAPCRAFT_PROJECT_VERSION_linux_$SNAP_ARCH.bz2
     override-build: |
-      chmod +x prep/extractor.sh
-      prep/extractor.sh
-    organize:
-      restic: bin/restic
+      snapcraftctl build
+      install restic_0.9.6_linux_$SNAP_ARCH $SNAPCRAFT_PART_INSTALL/restic
 
 apps:
   restic:
-    command: bin/restic
+    command: restic
