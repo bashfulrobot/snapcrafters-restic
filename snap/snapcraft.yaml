@@ -33,7 +33,7 @@ parts:
       bunzip2 $SNAPCRAFT_PROJECT_NAME_$SNAPCRAFT_PROJECT_VERSION_linux_$SNAP_ARCH.bz2
     override-build: |
       snapcraftctl build
-      install restic_0.9.6_linux_$SNAP_ARCH $SNAPCRAFT_PART_INSTALL/restic
+      install $SNAPCRAFT_PROJECT_NAME_$SNAPCRAFT_PROJECT_VERSION_linux_$SNAP_ARCH $SNAPCRAFT_PART_INSTALL/restic
 
 apps:
   restic:
