@@ -20,7 +20,9 @@ description: |
 
 confinement: classic
 grade: stable
-
+architectures:
+  - build-on: amd64
+  - build-on: arm64
 parts:
   restic:
     # Use the nil plugin with wget until bz2 is supported by snapcraft.
