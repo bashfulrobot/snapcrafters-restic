@@ -1,6 +1,8 @@
 name: restic
 base: core18
 version: "0.9.6"
+# https://github.com/snapcore/snapd/blob/master/spdx/licenses.go
+license: "BSD-2-Clause"
 summary: Fast, secure, efficient backup program.
 description: |
   Restic is a program that does backups right. The design goals are:
