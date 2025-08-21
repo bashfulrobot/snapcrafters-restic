@@ -1,6 +1,6 @@
 name: restic
-base: core22
-version: "0.16.4"
+base: core24
+version: "0.18.0"
 # https://github.com/snapcore/snapd/blob/master/spdx/licenses.go
 license: "BSD-2-Clause"
 summary: Fast, secure, efficient backup program.
@@ -22,22 +22,22 @@ description: |
 
 confinement: classic
 grade: stable
-architectures:
-  - build-on: amd64
+
 parts:
   restic:
-    # Use the nil plugin with wget until bz2 is supported by snapcraft.
-    plugin: nil
+    plugin: go
+    source: https://github.com/restic/restic.git
+    source-tag: "v$CRAFT_PROJECT_VERSION"
     build-packages:
-      - bzip2
-      - wget
-    override-pull: |
-      wget https://github.com/restic/restic/releases/download/v$SNAPCRAFT_PROJECT_VERSION/$SNAPCRAFT_PROJECT_NAME_$SNAPCRAFT_PROJECT_VERSION_linux_$SNAP_ARCH.bz2
-      bunzip2 $SNAPCRAFT_PROJECT_NAME_$SNAPCRAFT_PROJECT_VERSION_linux_$SNAP_ARCH.bz2
+      - git
+      - golang-go
     override-build: |
-      snapcraftctl build
-      install $SNAPCRAFT_PROJECT_NAME_$SNAPCRAFT_PROJECT_VERSION_linux_$SNAP_ARCH $SNAPCRAFT_PART_INSTALL/restic
+      go build -tags selfupdate_off -o restic ./cmd/restic
+      mkdir -p $CRAFT_PART_INSTALL/bin
+      install -m755 restic $CRAFT_PART_INSTALL/bin/restic
+    organize:
+      restic: bin/restic
 
 apps:
   restic:
-    command: restic
+    command: bin/restic
