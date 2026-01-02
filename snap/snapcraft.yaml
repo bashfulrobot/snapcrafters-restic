@@ -1,6 +1,6 @@
 name: restic
 base: core24
-version: "0.18.0"
+version: "0.18.1"
 # https://github.com/snapcore/snapd/blob/master/spdx/licenses.go
 license: "BSD-2-Clause"
 summary: Fast, secure, efficient backup program.
